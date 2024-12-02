@@ -2,20 +2,56 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*pour les bordures de débogage*/
+.debug {
+    border: 1px solid red !important;
+
+    & > * {
+        border: 1px solid green !important;
+
+        & > * {
+            border: 1px solid blue !important;
+        }
+    }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Styles spécifiques pour Ant Design */
+.ant-layout {
+    min-height: 100vh !important;
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+.ant-layout-sider {
+    background: #fff !important;
+}
+
+.ant-layout-header {
+    background: #fff !important;
+    padding: 0 24px !important;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.ant-menu-inline {
+    border-right: none !important;
+}
+
+
+.custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.header-custom {
+    background-color: blue;
 }
