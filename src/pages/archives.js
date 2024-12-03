@@ -42,8 +42,9 @@ const Archives= () => {
 
     return (
         <div >
-            <div className="flex justify-between">
-                <ComponentHeader title={"Mes Taches Archivés"} />
+            <div className="flex justify-between  items-center">
+                <ComponentHeader title={"Mes Taches Archivés"}/>
+                <img src="/archive.png" alt="Archives" className="w-14 h-14 "/>
             </div>
             <Divider className="mt-0"></Divider>
             <div className="flex">

@@ -55,7 +55,20 @@ const getStatusColor = (status) => {
             return "gray";
     }
 };
-
+const getStatusIcon = (status) => {
+    switch (status.toLowerCase()) {
+        case "to do":
+            return "/todo.png";
+        case "in progress":
+            return "/inprgrs.png";
+        case "completed":
+            return "/completed.png";
+        case "abandoned":
+            return "/abandoned.png";
+        default:
+            return "/default.png"; // fallback icon
+    }
+};
 const Tasks = () => {
     const { toggleModal, open } = useAppContext();
     const [selectedTask, setSelectedTask] = useState(null);
@@ -130,9 +143,17 @@ const Tasks = () => {
                 <Row gutter={16}>
                     {statuses.map((status) => (
                         <Col span={6} key={status.id}>
-                            <Card title={status.name} bordered={true} size="small"
-                                  styles={{header: {backgroundColor: lighten(0.1, getStatusColor(status.name))}}}
-                                  style={{backgroundColor: lighten(0.4, getStatusColor(status.name))}}
+                            <Card
+                                title={
+                                    <div className="flex items-center">
+                                        <img src={getStatusIcon(status.name)} alt="icon" className="w-4 h-4 mr-2" />
+                                        {status.name}
+                                    </div>
+                                }
+                                bordered={true}
+                                size="small"
+                                styles={{header: {backgroundColor: lighten(0.1, getStatusColor(status.name))}}}
+                                style={{backgroundColor: lighten(0.4, getStatusColor(status.name))}}
                             >
                                 {filteredTasks().filter(task => task.status.id === status.id).map(task => (
                                     <Card
