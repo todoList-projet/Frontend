@@ -5,7 +5,7 @@ export default function Document() {
         <Html lang="en">
             <Head>
                 <link rel="icon" href="/file.png" />
-                <title>Hoppy Tasks</title>
+
             </Head>
             <body className="antialiased">
             <Main />

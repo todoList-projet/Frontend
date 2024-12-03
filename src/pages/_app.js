@@ -11,7 +11,7 @@ const unprotectedRoutes = ['/', '/register', '/login']; // Pages accessibles san
 export default function App({ Component, pageProps }) {
   const router = useRouter();
   if (!router || !router.pathname) {
-    return null; // Affiche un écran vide ou un "loading" temporaire
+    return null;
   }
   const isNoLayoutPage = noLayoutPages.includes(router.pathname);
   const isUnprotectedRoute = unprotectedRoutes.includes(router.pathname);
