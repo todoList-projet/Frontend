@@ -1,9 +1,10 @@
 import { Badge, Card, Button} from "antd";
 import { lighten } from 'polished';
-import { useState} from "react";
+import React, { useState} from "react";
 import {WarningOutlined, HourglassOutlined, UserOutlined, RightCircleOutlined, EditOutlined} from "@ant-design/icons";
 import { useAppContext } from "@/AppContext.js";
 import GroupLeaveModal from "@/pages/groups/leave-modal/index.jsx";
+
 
 const getStatusColor = (status) => {
     switch (status) {
@@ -23,10 +24,13 @@ const getStatusColor = (status) => {
             return "gray";
     }
 };
-
-const getDeadlineStatus = (deadline) => {
+function formatDate(dateString) {
+    return new Date(dateString);
+}
+const getDeadlineColor = (deadline) => {
     const currentDate = new Date();
-    if (deadline < currentDate) {
+    const deadlineDate = formatDate(deadline);
+    if (deadlineDate < currentDate) {
         return { icon: <WarningOutlined />, color: 'red' };
     } else {
         return { icon: <HourglassOutlined />, color: 'black' };
@@ -51,32 +55,32 @@ function GroupDetailsDrawer({selectedGroup, tasksByGroup, groupMembers}) {
     return (
         <>
         <div className="flex h-full">
-            <div className="w-[70%] border-r border-gray-300  pr-5 overflow-y-auto custom-scrollbar">
-                {tasksByGroup?.map(task => (
-                    <Badge.Ribbon key={task.id} text={task.status.name} color={getStatusColor(task.status.name)}>
-                        <Card
-                            title={task.title}
-                            size="small"
-                            className={`mb-4 cursor-pointer`}
-                            style={{ backgroundColor: '#f0f0f5' }}
-                            styles={{ header : {backgroundColor: lighten(0.5    , getStatusColor(task.status.name))} }}
-                            onClick={() => toggleExpand(task.id)}
-                        >
-                            <div className="flex ">
-
-                                <div className="w-[80%]">
-                                    {expandedTaskId === task.id ? task.description : `${task.description?.substring(0, 100) || ''}...`}
+            {tasksByGroup && tasksByGroup.length > 0 && (
+                <div className="w-[70%] border-r border-gray-300 pr-5 overflow-y-auto custom-scrollbar">
+                    {tasksByGroup.map(task => (
+                        <Badge.Ribbon key={task.id} text={task.status.name} color={getStatusColor(task.status.name)}>
+                            <Card
+                                title={task.title}
+                                size="small"
+                                className={`mb-4 cursor-pointer`}
+                                style={{ backgroundColor: '#f0f0f5' }}
+                                styles={{ header: { backgroundColor: lighten(0.4, getStatusColor(task.status.name)) } }}
+                                onClick={() => toggleExpand(task.id)}
+                            >
+                                <div className="flex">
+                                    <div className="w-[80%]">
+                                        {expandedTaskId === task.id ? task.description : `${task.description?.substring(0, 100) || ''}...`}
+                                    </div>
+                                    <div className="text-right w-[20%] font-bold" style={{ color: getDeadlineColor(task.deadline).color }}>
+                                        {getDeadlineColor(task.deadline).icon} {task?.deadline}
+                                    </div>
                                 </div>
-                                <div className="text-right w-[20%] font-bold"
-                                     style={{color: getDeadlineStatus(task.deadline).color}}>
-                                    {getDeadlineStatus(task.deadline).icon} {task?.deadline}
-                                </div>
-                            </div>
-                        </Card>
-                    </Badge.Ribbon>
-                ))}
-            </div>
-            <div className="w-[30%]  pl-4 flex flex-col justify-between ">
+                            </Card>
+                        </Badge.Ribbon>
+                    ))}
+                </div>
+            )}
+            <div className={`pl-4 flex flex-col justify-between  ${tasksByGroup && tasksByGroup.length > 0 ? 'w-[30%]' : 'w-[100%]'}`}>
                 <div>
                     <div className="flex flex-col">
                         <div className="text-lg font-bold">Description du Groupe</div>

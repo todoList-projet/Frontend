@@ -37,8 +37,8 @@ const Archives= () => {
         queryFn: () => getArchivedTasks(),
     });
 
-    const personalTasks = ArchivedTasks?.data.filter(task => task.type.name === "personal");
-    const collaborativeTasks = ArchivedTasks?.data.filter(task => task.type.name === "collaborative");
+    const personalTasks = ArchivedTasks?.data.filter(task => task.type.name === "Personal");
+    const collaborativeTasks = ArchivedTasks?.data.filter(task => task.type.name === "Collaborative");
 
     return (
         <div >

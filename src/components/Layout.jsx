@@ -32,12 +32,13 @@ export default function MainLayout({ children }) {
                 collapsed={collapsed}
                 onCollapse={(value) => setCollapsed(value)}
                 theme="light"
+
             >
                 <img src="/file.png" alt="Logo" className={`m-4 ${collapsed ? 'h-10' : 'h-40'}`}/>
-                <SideMenu/>
+                <SideMenu />
             </Sider>
             <Layout>
-                <Header className="red-header">
+                <Header >
                     <HeaderBar />
                 </Header>
                 <Content className="m-4">

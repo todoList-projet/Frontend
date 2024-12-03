@@ -19,6 +19,7 @@ console.log('GroupLeaveModa',selectedGroup.id)
                 okType: "danger",
                 onOk: () => {
                     leaveMutation.mutate(selectedGroup.id);
+                    toggleModal('detailsDrawer');
                 },
                 onCancel: () => {
                     console.log('Cancel');

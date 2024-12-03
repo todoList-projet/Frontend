@@ -105,7 +105,7 @@ const Groups = () => {
 
             <Drawer
                 title={selectedGroup?.name}
-                width={1100}
+                width={tasksByGroup && tasksByGroup.length > 0 ? 500 : 750}
                 closable={false}
                 onClose={onClose}
                 open={open.detailsDrawer}
