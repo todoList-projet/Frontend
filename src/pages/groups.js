@@ -1,12 +1,12 @@
 import React from 'react';
 import {Alert, Button, Col, Divider, Drawer, Row} from "antd";
-import ComponentHeader from "../../../front-todolist/src/components/HeaderContent";
+import ComponentHeader from "@/components/HeaderContent";
 import {useQuery} from "@tanstack/react-query";
-import {getGroupMembers, getGroups, getTasksByGroup} from "../../../front-todolist/src/services/groupsApi.js";
+import {getGroupMembers, getGroups, getTasksByGroup} from "@/services/groupsApi.js";
 import {GroupOutlined, PlusCircleOutlined} from "@ant-design/icons";
-import {useAppContext} from "../../../front-todolist/src/AppContext.js";
+import {useAppContext} from "@/AppContext.js";
 import GroupCreateModal from "./groups/create-modal";
-import {getAllUsers} from "../../../front-todolist/src/services/usersApi.js";
+import {getAllUsers} from "@/services/usersApi.js";
 import { useState} from "react";
 import GroupDetailsDrawer from "./groups/details-drawer";
 import GroupEditDrawer from "./groups/edit-drawer";
